@@ -3,28 +3,40 @@
 
 // in CodeBlocks, must save .txt file as "all files" type and store it in the same file location as the source file of the code. 
 
+#include <stdio.h>
+#include <stdlib.h>
+
 int main()
 {
-    // Declare a file pointer
-    FILE *inputFile;
+    // declare files
+    FILE *inF;
+    FILE *outF;
 
-    int number;
+    char c;
+    int result = 1;
 
-    // Open the file for reading
-    inputFile = fopen("Input.txt", "r");
+    // declare pointer to result
+    int *ptr_result = &result;
 
-    if (inputFile != NULL) {
+    // open files
+    inF = fopen("Input.txt", "r"); // read mode
+    outF = fopen("Output.txt", "w"); // write mode
 
-        printf("Content:\n");
+    if (inF != NULL && outF != NULL){
 
-        while (fscanf(inputFile, "%d", &number) == 1) {
-            printf("Number: %d\n", number);  // Corrected the print statement
+        while (fscanf(inF, " %c", &c) == 1){ // reads individual characters
+
+            if (c >= '0' && c <= '9'){ // checks if character is a digit
+
+                int digit = c - '0'; // converts character to integer
+
+                *ptr_result *= digit; // multiplies result by digit and stores value in pointer
+
+                fprintf(outF, "%d\n\n", *ptr_result); // writes product to output file
+            }
         }
 
-        fclose(inputFile); // Close the file
-    } else {
-        printf("Error: Cannot open file.\n");
-    }
+    } else printf("Error");
 
     return 0;
 }

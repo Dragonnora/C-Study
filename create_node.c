@@ -6,7 +6,7 @@
 struct node {
     
    int data;
-   struct node *link; // self-referencing. points to struct node
+   struct node *link; // self-referencing. we will give this pointer address of the next node later  
     
 }; 
 

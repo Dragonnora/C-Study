@@ -15,6 +15,11 @@ struct node {
 int main()
 {
     
+    /* initialize ptr to NULL to so program doesn't assign it invalid 
+        memory location. if we dereference ptr (try to access memory it points to)
+        and it contains a garbage value, it can lead to undefined behavior 
+    */ 
+    
     struct node *head = NULL; // ptr that points to struct node. initialize to 'no address'
     head = (struct node*)malloc(sizeof(struct node)); // typecast is optional. converts to ptr that points to struct node 
     

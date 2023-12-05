@@ -3,7 +3,8 @@
 
 // Structure for student information
 typedef struct Student_Info {
-    char name[50];
+    char firstName[50];
+    char lastName[50];
     int ID;
     double grade;
     struct Student_Info* link;
@@ -14,13 +15,14 @@ void push(student** top) {
     student* newStudent = (student*)malloc(sizeof(student));
 
     if (newStudent == NULL) {
-        printf("\nMemory allocation failed.\n");
+        printf("Memory allocation failed.\n");
         exit(EXIT_FAILURE);
     }
 
-    printf("\n");
-    printf("Enter student name: ");
-    scanf("%s", newStudent->name);
+    printf("Enter student first name: ");
+    scanf("%s", newStudent->firstName);
+    printf("Enter student last name: ");
+    scanf("%s", newStudent->lastName);
     printf("Enter student ID: ");
     scanf("%d", &(newStudent->ID));
     printf("Enter student grade: ");
@@ -29,13 +31,13 @@ void push(student** top) {
     newStudent->link = *top;
     *top = newStudent;
 
-    printf("\nTest paper added to the stack.\n");
+    printf("Test paper added to the stack.\n");
 }
 
 // Function to remove a test paper from the stack
 void pop(student** top) {
     if (*top == NULL) {
-        printf("\nStack is empty. No test paper to remove.\n");
+        printf("Stack is empty. Cannot remove test paper.\n");
         return;
     }
 
@@ -43,20 +45,20 @@ void pop(student** top) {
     *top = (*top)->link;
     free(temp);
 
-    printf("\nTest paper removed from the stack.\n");
+    printf("Test paper removed from the stack.\n");
 }
 
 // Function to print test papers from top to bottom
 void printStack(student* top) {
     if (top == NULL) {
-        printf("\nStack is empty.\n");
+        printf("Stack is empty.\n");
         return;
     }
 
-    printf("\nTest papers on the stack (from top to bottom):\n");
+    printf("Test papers on the stack (from top to bottom):\n");
 
     while (top != NULL) {
-        printf("Name: %s, ID: %d, Grade: %.2lf\n", top->name, top->ID, top->grade);
+        printf("Name: %s %s, ID: %d, Grade: %.2lf\n", top->firstName, top->lastName, top->ID, top->grade);
         top = top->link;
     }
 }
@@ -64,8 +66,6 @@ void printStack(student* top) {
 int main() {
     student* top = NULL;
     int choice;
-    
-    printf("POV: You're sitting in your office with a stack of test papers sitting on your desk.\n");
 
     do {
         printf("\nMenu:\n");
@@ -87,10 +87,10 @@ int main() {
                 printStack(top);
                 break;
             case 4:
-                printf("\nExiting program.\n");
+                printf("Exiting program.\n");
                 break;
             default:
-                printf("\nInvalid choice. Please enter a valid option.\n");
+                printf("Invalid choice. Please enter a valid option.\n");
         }
 
     } while (choice != 4);
@@ -102,4 +102,3 @@ int main() {
 
     return 0;
 }
-

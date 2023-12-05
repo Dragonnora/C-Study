@@ -18,7 +18,8 @@ void push(student** top) {
         printf("Memory allocation failed.\n");
         exit(EXIT_FAILURE);
     }
-
+    
+    printf("\n"); 
     printf("Enter student first name: ");
     scanf("%s", newStudent->firstName);
     printf("Enter student last name: ");
@@ -55,7 +56,7 @@ void printStack(student* top) {
         return;
     }
 
-    printf("Test papers on the stack (from top to bottom):\n");
+    printf("\nTest papers on the stack (from top to bottom):\n");
 
     while (top != NULL) {
         printf("Name: %s %s, ID: %d, Grade: %.2lf\n", top->firstName, top->lastName, top->ID, top->grade);
